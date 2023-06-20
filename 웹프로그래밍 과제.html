@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>웹프로그래밍 기말과제</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    td {
+      background-color: #fff;
+    }
+
+    h1 {
+      margin-top: 0;
+      color: white;
+      background-color: green;
+      padding: 20px;
+    }
+
+    /* 추가된 스타일 */
+    .hidden {
+      display: none;
+    }
+  </style>
+  <script>
+      function showTable(tableId) {
+      var table = document.getElementById(tableId);
+      var newWindow = window.open("", "_blank", "width=400,height=300");
+      newWindow.document.write("<html><head><title>반려식물키우기</title>");
+      newWindow.document.write("<style>");
+      newWindow.document.write("table {");
+      newWindow.document.write("width: 100%;");
+      newWindow.document.write("border-collapse: collapse;");
+      newWindow.document.write("font-family: Arial, sans-serif;");
+      newWindow.document.write("color: #333;");
+      newWindow.document.write("}");
+
+      newWindow.document.write("th, td {");
+      newWindow.document.write("padding: 8px;");
+      newWindow.document.write("text-align: left;");
+      newWindow.document.write("border-bottom: 1px solid #ddd;");
+      newWindow.document.write("}");
+
+      newWindow.document.write("th {");
+      newWindow.document.write("background-color: #f2f2f2;");
+      newWindow.document.write("font-weight: bold;");
+      newWindow.document.write("}");
+
+      newWindow.document.write("td {");
+      newWindow.document.write("background-color: #fff;");
+      newWindow.document.write("}");
+
+      newWindow.document.write("h1 {");
+      newWindow.document.write("margin-top: 0;");
+      newWindow.document.write("}");
+      newWindow.document.write("</style></head><body>");
+      newWindow.document.write("<h1>반려식물키우기</h1>");
+      newWindow.document.write("<table>");
+      newWindow.document.write(table.innerHTML);
+      newWindow.document.write("</table>");
+      newWindow.document.write("</body></html>");
+      newWindow.document.close();
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>반려식물 소개 사이트</h1>
+    <nav>
+      <ul>
+        <li><a href="#" onclick="showTable('beautifulFlowersTable')">여자친구에게 선물하기 좋은 '예쁜 꽃' Best 10</a></li>
+        <li><a href="#" onclick="showTable('bestPlantsTable')">공기정화식물 Best10</a></li>
+        <li><a href="https://instagram.com/rubberduckk__?igshid=NGExMmI2YTkyZg==">Instagram</a></li>
+        <li><a href="https://m.blog.naver.com/rubberduckk__">네이버 블로그</a></li>
+        <li><a href="#" onclick="showTable('PhoneNumberTable')">전화번호</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <h2>반려동물보단 반려식물</h2>
+    <p>"반려동물보다 반려식물, 자연과 함께 숨 쉬는 힐링 파트너" "향기로운 동반자, 반려식물과 함께하는 평화로운 일상" "새록새록 희망을 심는, 반려식물의 따뜻한 손길" "고요한 녹음, 반려식물과 나누는 안정과 평온" "자연의 소중한 선물, 반려식물로 만나는 행복한 동행" 을 원하시나요? 잘 찾아오셨습니다. 반려식물 소개 사이트 입니다.</p>
+  </section>
+
+  <section>
+    <h2>My Services</h2>
+    <ul>
+      <li>반려식물 소개</li>
+      <li>반려식물 판매</li>
+      <section>
+  <h2>반려식물 투표</h2>
+  <li><a href="#" onclick="openDialog()">반려식물 투표</a></li>
+</section>
+
+<div id="dialog" class="hidden">
+  <h3>반려식물 투표</h3>
+  <table>
+    <caption>투표할 식물 선택</caption>
+    <tr>
+      <th>식물</th>
+      <th>투표</th>
+      <th>득표수</th>
+    </tr>
+    <tr>
+      <td>장미</td>
+      <td><button onclick="vote('rose')">투표</button></td>
+      <td id="roseVotes">0</td>
+    </tr>
+    <tr>
+      <td>튤립</td>
+      <td><button onclick="vote('tulip')">투표</button></td>
+      <td id="tulipVotes">0</td>
+    </tr>
+    <tr>
+      <td>수국</td>
+      <td><button onclick="vote('hydrangea')">투표</button></td>
+      <td id="hydrangeaVotes">0</td>
+    </tr>
+    <tr>
+      <td>해바라기</td>
+      <td><button onclick="vote('sunflower')">투표</button></td>
+      <td id="sunflowerVotes">0</td>
+    </tr>
+    <tr>
+      <td>안개꽃</td>
+      <td><button onclick="vote('fogflower')">투표</button></td>
+      <td id="fogflowerVotes">0</td>
+    </tr>
+  </table>
+  <button onclick="closeDialog()">닫기</button>
+</div>
+
+<style>
+  #dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 300px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+  }
+</style>
+
+<script>
+  var voteCounts = {
+    rose: 0,
+    tulip: 0,
+    hydrangea: 0,
+    sunflower: 0,
+    fogflower: 0
+  };
+
+  function openDialog() {
+    var dialog = document.getElementById("dialog");
+    dialog.classList.remove("hidden");
+  }
+
+  function vote(plant) {
+    voteCounts[plant]++;
+    updateResults();
+    showNotification(plant);
+  }
+
+  function showNotification(plant) {
+    var notification = "투표가 완료되었습니다! 선택한 식물: " + plant;
+    alert(notification);
+  }
+
+  function updateResults() {
+    var roseVotes = document.getElementById("roseVotes");
+    roseVotes.textContent = voteCounts.rose;
+
+    var tulipVotes = document.getElementById("tulipVotes");
+    tulipVotes.textContent = voteCounts.tulip;
+
+    var hydrangeaVotes = document.getElementById("hydrangeaVotes");
+    hydrangeaVotes.textContent = voteCounts.hydrangea;
+
+    var sunflowerVotes = document.getElementById("sunflowerVotes");
+    sunflowerVotes.textContent = voteCounts.sunflower;
+
+    var fogflowerVotes = document.getElementById("fogflowerVotes");
+    fogflowerVotes.textContent = voteCounts.fogflower;
+  }
+
+  function closeDialog() {
+    var dialog = document.getElementById("dialog");
+    dialog.classList.add("hidden");
+  }
+</script>
+
+
+
+
+
+<!-- 여자친구에게 선물하기 좋은 '예쁜 꽃' Best 10 테이블 -->
+    <table id="bestPlantsTable" class="hidden">
+    <caption>공기정화식물 인기순위 Top 10</caption>
+    <tr>
+      <th>Rank</th>
+      <th>Plant</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>극락조</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>드라세나 콤팩타</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>산세베리아</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>산호수</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>금전수</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>스킨답서스</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>드라코</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>파키라</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>인도고무나무</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>틸란드시아</td>
+    </tr>
+  </table>
+
+  <!-- 여자친구에게 선물하기 좋은 '예쁜 꽃' Best 10 테이블 -->
+  <table id="beautifulFlowersTable" class="hidden">
+    <caption>여자친구에게 선물하기 좋은 '예쁜 꽃' Top 10</caption>
+    <tr>
+      <th>Rank</th>
+      <th>Flower</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>장미 (Rose)</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>튤립 (Tulip)</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>수국 (Hydrangea)</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>카네이션 (Carnation)</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>백합 (Lily)</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>프리지아 (Freesia)</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>국화 (Chrysanthemum)</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>아이리스 (Iris)</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>제비꽃 (Daffodil)</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>히아신스 (Hyacinth)</td>
+    </tr>
+  </table>
+  <!-- 여자친구에게 선물하기 좋은 '예쁜 꽃' Best 10 테이블 -->
+  <table id="PhoneNumberTable" class="hidden">
+    <caption>구매연락처</caption>
+    <tr>
+      <th>♥</th>
+      <th>★</th>
+    </tr>
+    <tr>
+      <td>핸드폰</td>
+      <td>01097370275</td>
+    </tr>
+      <td>매장전화번호</td>
+      <td>0518910275</td>
+    </tr>
+  </table>
+
+  <footer>
+    <p>20160089 박승우</p>
+  </footer>
+</body>
+</html>
